@@ -4,11 +4,12 @@ set -e
 
 echo 'Installing bundles...'
 cd ${INPUT_SITE_LOCATION}
-gem install bundler
+gem install bundler:1.16.6
 bundle install
 bundle list | grep "middleman ("
 
 echo 'Building site...'
+bundle exec rake sass:import
 bundle exec middleman build
 
 echo 'Publishing site...'
